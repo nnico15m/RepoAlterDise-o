@@ -47,9 +47,9 @@ import dominio.Alumno
 		var labelNumero = new Label(searchFormPanel1)
 		labelNumero.text = "Materias"
 		
-		var labelMateria = new Label(searchFormPanel1)
-		labelMateria.text = "Materia"
-		
+		new Label(searchFormPanel1)
+			.setBackground(Color::ORANGE)
+			.bindValueToProperty("materia")
 	}
 	
 	}

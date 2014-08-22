@@ -2,6 +2,10 @@ package dominio
 
 @org.uqbar.commons.utils.Observable
 
-class Materia {
+
+
+	class Materia {
 	
-}
+	@Property String nombreMateria
+	
+	}

@@ -5,7 +5,8 @@ import org.uqbar.arena.Application
 import org.uqbar.arena.windows.Window
 import org.uqbar.commons.utils.ApplicationContext
 import interfazVentanaNueva.SeguidorDeCarrera
-
+import dominio.Materia
+import dominio.HomeMateria
 
 class BuscadorDeMateriasApplicacion extends Application {
 	
@@ -15,7 +16,7 @@ class BuscadorDeMateriasApplicacion extends Application {
 	
 	override protected Window<?> createMainWindow() {
 		
-	//	ApplicationContext.instance.configureSingleton(typeof(Materia), new HomeMateria)
+		ApplicationContext.instance.configureSingleton(typeof(Materia), new HomeMateria)
 		
 		return new SeguidorDeCarrera(this)
 	
