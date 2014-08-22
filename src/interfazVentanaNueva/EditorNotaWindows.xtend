@@ -24,12 +24,14 @@ class EditorNotaWindows extends MainWindow<EditorNota>  {
 		var searchFormPanel = new Panel(mainPanel)
 		searchFormPanel.setLayout(new ColumnLayout(2))
 
-		var labelNumero = new Label(searchFormPanel)
-		labelNumero.text = "Fecha"
-		labelNumero.foreground = Color::BLUE
-
-		new TextBox(searchFormPanel).bindValueToProperty("fecha")
+		var labelFecha = new Label(searchFormPanel)
+		labelFecha.text = "Fecha"
+		labelFecha.foreground = Color::BLUE
 		
+
+		var textBoxFecha = new TextBox(searchFormPanel)
+		textBoxFecha.bindValueToProperty("fecha")
+		textBoxFecha.width = 50
 		
 	}
 	
