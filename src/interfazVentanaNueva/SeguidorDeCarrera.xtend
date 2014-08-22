@@ -14,9 +14,9 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import dominio.Alumno
+import dominio.Materia
 
-
-	class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
+class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
 		new(WindowOwner parent) {
 			super(parent, new Alumno)
@@ -28,8 +28,16 @@ import dominio.Alumno
 		taskDescription = "Seguidor De Carrera"
 
 		super.createMainTemplate(mainPanel)
-
+		this.createResultsGrid(mainPanel)
 		
+	}
+	
+	def createResultsGrid(Panel mainPanel) {
+		var table = new Table(mainPanel, typeof(Materia))
+		table.heigth = 200
+		table.width = 450
+		
+		//this.describeResultsGrid(table) Falta poner las materias pero se como se hace
 	}
 	
 	override protected addActions(Panel actionsPanel) {
