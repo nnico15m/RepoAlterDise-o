@@ -43,8 +43,22 @@ class EditorNotaWindows extends MainWindow<EditorNota>  {
 		textBoxDescripcion.width = 150
 		
 		
+		var searchFormPanel3 = new Panel(mainPanel)
+		searchFormPanel3.setLayout(new ColumnLayout(2))
 		
-	}
+		new Button(searchFormPanel3) => [
+			caption = "Volver"
+			onClick [ | this.modelObject.convertir ]
+		]
+
+		new Button(searchFormPanel3) => [
+			caption = "Aceptar"
+			onClick [ | this.modelObject.convertir ]
+		]
+
+
+   }
+	
 	
 	def static main(String[] args) {
 		new EditorNotaWindows().startApplication
