@@ -1,11 +1,10 @@
-package interfazVentanaNueva
+package principal
 
 
 import org.uqbar.arena.Application
 import org.uqbar.arena.windows.Window
 import org.uqbar.commons.utils.ApplicationContext
-import dominio.HomeMateria
-import dominio.Materia
+import interfazVentanaNueva.SeguidorDeCarrera
 
 
 class BuscadorDeMateriasApplicacion extends Application {

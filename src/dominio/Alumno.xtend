@@ -2,14 +2,19 @@ package dominio
 
 import org.uqbar.commons.utils.Observable
 import java.io.Serializable
+import java.util.ArrayList
+import java.util.List
 
 @org.uqbar.commons.utils.Observable
 
-class Alumno implements Serializable {
+class Alumno  {
 	
+	@Property List<Materia> materias
 	
 	def search() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
+		materias = new ArrayList<Materia>
+		
 	}
 	
 }

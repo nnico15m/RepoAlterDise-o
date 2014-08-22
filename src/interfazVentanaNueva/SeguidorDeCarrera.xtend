@@ -32,19 +32,26 @@ import dominio.Alumno
 		
 	}
 	
-		override protected addActions(Panel actionsPanel) {
-			throw new UnsupportedOperationException("TODO: auto-generated method stub")
-		}
+	override protected addActions(Panel actionsPanel) {
+		new Button(actionsPanel)
+			.setCaption("Buscar")
+			.onClick [ | modelObject.search ] 
+			.setAsDefault
+			.disableOnError
+	}
 	
-		override protected createFormPanel(Panel mainPanel) {
-			
+	override protected createFormPanel(Panel mainPanel) {
+		var searchFormPanel1 = new Panel(mainPanel)
+		searchFormPanel1.setLayout(new ColumnLayout(2))
 
-		}
+		var labelNumero = new Label(searchFormPanel1)
+		labelNumero.text = "Materias"
+		
+		var labelMateria = new Label(searchFormPanel1)
+		labelMateria.text = "Materia"
+		
+	}
+	
+	}
 	
 	
-	def openDialog(Dialog<?> dialog) {
-		dialog.onAccept[|modelObject.search]
-		dialog.open}
-	
-	
-}
