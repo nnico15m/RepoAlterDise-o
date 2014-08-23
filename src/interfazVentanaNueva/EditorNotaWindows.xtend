@@ -62,17 +62,17 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 		
 		var searchFormPanel3 = new Panel(mainPanel)
 		searchFormPanel3.setLayout(new ColumnLayout(2))
-		
-		new Button(searchFormPanel3) => [
-			caption = "Volver"
-			onClick [ | this.modelObject.convertir ]
-		]
-
+	
+		new Button(searchFormPanel3)
+			.setCaption("Volver")
+			.onClick[|this.close]	
+	
+	
 		new Button(searchFormPanel3) => [
 			caption = "Aceptar"
 			onClick [ | this.modelObject.convertir ]
-		]
 
+		]
 
    }
 	

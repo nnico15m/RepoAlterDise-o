@@ -23,7 +23,13 @@ class NuevaMateriaWindow extends Dialog<Materia>{
 		new Button(actionsPanel)
 			.setCaption("Aceptar")
 			.onClick[|this.accept]
+			
+		new Button(actionsPanel)
+			.setCaption("Volver")
+			.onClick[|this.close]	
 	}
+	
+	
 	
 	override executeTask(){
 		homeMateria.create(modelObject)
