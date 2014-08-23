@@ -45,11 +45,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	}
 */	
 	override protected addActions(Panel actionsPanel) {
-		new Button(actionsPanel)
-			.setCaption("Buscar")
-			.onClick [ | modelObject.search ] 
-			.setAsDefault
-			.disableOnError
 			
 		new Button(actionsPanel)
 			.setCaption("Nueva Materia")
@@ -63,20 +58,24 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var labelNumero = new Label(searchFormPanel1)
 		labelNumero.text = "Materias"
 		
-		new Label(searchFormPanel1)
-			.setBackground(Color::ORANGE)
-			.bindValueToProperty("materia")
+	//	new Label(searchFormPanel1)
+	//		.setBackground(Color::ORANGE)
+	//		.bindValueToProperty("materia")
 			
-		new Label(mainPanel).setText("Materias")
+			
+	//	new Label(mainPanel).setText("Materias")
 		var tablaMaterias = new Table<Materia>(mainPanel, typeof(Materia))
+		
 		tablaMaterias.bindItemsToProperty("materias")
-		new Column<Materia>(tablaMaterias)
-			.bindContentsToProperty("nombreMateria")
+		var columna1 = new Column<Materia>(tablaMaterias)
+			columna1.title = "Nombre"
+			columna1.bindContentsToProperty("nombreMateria")
 		}
 	
 	
 	def crearMateria() {
 		this.openDialog(new NuevaMateriaWindow(this))
+		
 	}
 	
 	def openDialog(NuevaMateriaWindow window) {
