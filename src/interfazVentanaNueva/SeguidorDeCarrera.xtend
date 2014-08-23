@@ -35,11 +35,15 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		taskDescription = "Seguidor De Carrera"
 
 		super.createMainTemplate(mainPanel)
+		
+		this.createGridActions(mainPanel)
 
 
 
 		
 	}
+	
+	
 
 	override protected addActions(Panel actionsPanel) {
 			
@@ -78,6 +82,21 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		
 		
 	}
+		
+		
+	def createGridActions(Panel mainpanel) {
+		
+		var actionsPanel = new Panel(mainpanel)
+		actionsPanel.setLayout(new HorizontalLayout)
+		var edit = new Button(actionsPanel)
+			.setCaption("Editar")
+			.onClick [ | this.editarMateria]
+		
+		var elementSelected = new NotNullObservable("materia")
+		
+		edit.bindEnabled(elementSelected)
+	}	
+	
 		
 	def crearMateria() {
 		this.openDialog(new NuevaMateriaWindow(this))

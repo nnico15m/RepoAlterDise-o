@@ -12,6 +12,7 @@ class Alumno  {
 	
 	@Property List<Materia> materias
 	@Property Materia materia
+
 	
 	
 	def search() {
