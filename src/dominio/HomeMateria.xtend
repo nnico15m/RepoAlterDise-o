@@ -8,6 +8,8 @@ import org.uqbar.commons.utils.Observable
 import org.apache.commons.collections15.Predicate;
 import java.util.List
 import java.util.ArrayList
+import interfazVentanaNueva.EditorNotaWindows
+import org.uqbar.arena.windows.SimpleWindow
 
 @Observable
 
@@ -19,9 +21,22 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 	
 	def void init() {
 		
-		this.create("Discreta")
+		this.create("Matematica Discreta")
 		this.create("Algoritmos")
-//		this.crear("Discreta")
+		this.create("Analisis I")
+		this.create("Analisis de Sistemas")
+		this.create("Ingenieria y Sociedad")
+		this.create("Algebra")
+		this.create("Quimica")
+		this.create("Fisica I")	
+		this.create("Fisica II")
+		this.create("Sistemas Operativos")
+		this.create("Redes")
+		this.create("Arquitectura")
+		this.create("Sintaxis")
+		this.create("Diseño")
+	
+	
 	}
 	
 	

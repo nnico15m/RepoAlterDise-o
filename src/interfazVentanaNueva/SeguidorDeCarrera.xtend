@@ -18,12 +18,17 @@ import dominio.HomeMateria
 import dominio.Materia
 
 
+
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
+	
+	
 	
 		new(WindowOwner parent) {
 			super(parent, new Alumno)
 			modelObject.search()
 		}
+	
+	
 	
 		override def createMainTemplate(Panel mainPanel) {
 		title = "Seguidor De Carrera"
@@ -31,19 +36,11 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 
 		super.createMainTemplate(mainPanel)
 
-//		this.createResultsGrid(mainPanel)
+
 
 		
 	}
-	
-/*	def createResultsGrid(Panel mainPanel) {
-		var table = new Table(mainPanel, typeof(Materia))
-		table.heigth = 200
-		table.width = 450
-		
-		//this.describeResultsGrid(table) Falta poner las materias pero se como se hace
-	}
-*/	
+
 	override protected addActions(Panel actionsPanel) {
 			
 		new Button(actionsPanel)
@@ -53,11 +50,12 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Button(actionsPanel)	
 			.setCaption("Editar")
 			.onClick[|this.editarMateria]
+		
+			
+			
 				
 			
 	}
-	
-	
 	
 	override protected createFormPanel(Panel mainPanel) {
 		var searchFormPanel1 = new Panel(mainPanel)
@@ -66,27 +64,21 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var labelNumero = new Label(searchFormPanel1)
 		labelNumero.text = "Materias"
 		
-	//	new Label(searchFormPanel1)
-	//		.setBackground(Color::ORANGE)
-	//		.bindValueToProperty("materia")
-			
-			
-	//	new Label(mainPanel).setText("Materias")
+	
 		var tablaMaterias = new Table<Materia>(mainPanel, typeof(Materia))
-		
 		tablaMaterias.bindItemsToProperty("materias")
-		var columna1 = new Column<Materia>(tablaMaterias)
-			columna1.title = "Nombre"
-			columna1.bindContentsToProperty("nombreMateria")
-		
-		
-		
-		
+		this.describeResultsGrid(tablaMaterias)	
 		
 		}
-		
-		
 	
+	def describeResultsGrid(Table<Materia> table) {
+		
+		new Column<Materia>(table).setTitle("Nombre").bindContentsToProperty("nombreMateria")
+		//new Column<Materia>(table).bindContentsToProperty("Editar")
+		
+		
+	}
+		
 	def crearMateria() {
 		this.openDialog(new NuevaMateriaWindow(this))
 		
@@ -98,6 +90,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	}
 	
 	def editarMateria() {
+		
 		this.openDialog(new EditorNotaWindows(this))
 	}
 	
