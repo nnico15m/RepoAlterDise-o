@@ -49,7 +49,15 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Button(actionsPanel)
 			.setCaption("Nueva Materia")
 			.onClick[|this.crearMateria]
+			
+		new Button(actionsPanel)	
+			.setCaption("Editar")
+			.onClick[|this.editarMateria]
+				
+			
 	}
+	
+	
 	
 	override protected createFormPanel(Panel mainPanel) {
 		var searchFormPanel1 = new Panel(mainPanel)
@@ -70,8 +78,14 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var columna1 = new Column<Materia>(tablaMaterias)
 			columna1.title = "Nombre"
 			columna1.bindContentsToProperty("nombreMateria")
+		
+		
+		
+		
+		
 		}
-	
+		
+		
 	
 	def crearMateria() {
 		this.openDialog(new NuevaMateriaWindow(this))
@@ -82,6 +96,16 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		window.onAccept[|modelObject.search]
 		window.open
 	}
+	
+	def editarMateria() {
+		this.openDialog(new EditorNotaWindows(this))
+	}
+	
+	def openDialog(EditorNotaWindows window) {
+		window.onAccept[|modelObject.search]
+		window.open
+	}
+	
 	
 }
 	

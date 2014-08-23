@@ -14,11 +14,14 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.CheckBox
 import dominio.EditorNota
+import org.uqbar.arena.windows.WindowOwner
+import dominio.Materia
 
-class EditorNotaWindows extends MainWindow<EditorNota>  {
+class EditorNotaWindows extends Dialog<EditorNota>  {
 	
-	new() {
-		super(new EditorNota)
+	
+	new(WindowOwner parent) {
+		super(parent, new EditorNota)
 	}
 	
 	override createContents(Panel mainPanel) {
@@ -82,9 +85,10 @@ class EditorNotaWindows extends MainWindow<EditorNota>  {
 		ventana.open
 	}
 	
-	def static main(String[] args) {
-		new EditorNotaWindows().startApplication
+	override protected createFormPanel(Panel mainPanel) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
+	
 	
 	
 }
