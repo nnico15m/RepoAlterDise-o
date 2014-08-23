@@ -16,31 +16,23 @@ import org.uqbar.arena.windows.WindowOwner
 import dominio.Alumno
 import dominio.HomeMateria
 import dominio.Materia
-
-
+import org.uqbar.arena.widgets.CheckBox
 
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
 	
+	new(WindowOwner parent) {
+		super(parent, new Alumno)
+		modelObject.search()
+	}
 	
-		new(WindowOwner parent) {
-			super(parent, new Alumno)
-			modelObject.search()
-		}
-	
-	
-	
-		override def createMainTemplate(Panel mainPanel) {
+	override def createMainTemplate(Panel mainPanel) {
 		title = "Seguidor De Carrera"
 		taskDescription = "Seguidor De Carrera"
 
 		super.createMainTemplate(mainPanel)
-		
+
 		this.createGridActions(mainPanel)
-
-
-
-		
 	}
 	
 	
@@ -54,32 +46,44 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Button(actionsPanel)	
 			.setCaption("Editar")
 			.onClick[|this.editarMateria]
-		
-			
-			
 				
-			
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		var searchFormPanel1 = new Panel(mainPanel)
-		searchFormPanel1.setLayout(new ColumnLayout(2))
 
-		var labelNumero = new Label(searchFormPanel1)
+		var materiasPanel = new Panel(mainPanel)
+		materiasPanel.layout = new HorizontalLayout
+		
+		var tablaMateriasPanel = new Panel(materiasPanel)
+		var labelNumero = new Label(tablaMateriasPanel)
 		labelNumero.text = "Materias"
 		
-	
-		var tablaMaterias = new Table<Materia>(mainPanel, typeof(Materia))
+		
+		var tablaMaterias = new Table<Materia>(tablaMateriasPanel, typeof(Materia))
 		tablaMaterias.bindItemsToProperty("materias")
+		tablaMaterias.bindValueToProperty("materia")
 		this.describeResultsGrid(tablaMaterias)	
 		
-		}
+		var descriptorMateriaPanel = new Panel(materiasPanel, modelObject.materia)
+		
+		new Label(descriptorMateriaPanel).bindValueToProperty("nombreMateria")
+		
+		var anioYFinalPanel = new Panel(descriptorMateriaPanel)
+		anioYFinalPanel.layout = new HorizontalLayout
+		new Label(anioYFinalPanel).setText("Año cursada: ")
+		new TextBox(anioYFinalPanel).bindValueToProperty("anioCursada")
+		new CheckBox(anioYFinalPanel).bindValueToProperty("finalAprobado")
+		new Label(anioYFinalPanel).setText("Final Aprobado")
+		
+		var profesorPanel = new Panel(descriptorMateriaPanel)
+		profesorPanel.layout = new HorizontalLayout
+		new Label(profesorPanel).setText("Profesor de cursada: ")
+		new TextBox(profesorPanel).bindValueToProperty("profesor")
+	}
 	
 	def describeResultsGrid(Table<Materia> table) {
 		
 		new Column<Materia>(table).setTitle("Nombre").bindContentsToProperty("nombreMateria")
-		//new Column<Materia>(table).bindContentsToProperty("Editar")
-		
 		
 	}
 		
@@ -92,6 +96,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 			.setCaption("Editar")
 			.onClick [ | this.editarMateria]
 		
+//		var elementSelected = new NotNullObservable("materia")
 		var elementSelected = new NotNullObservable("materia")
 		
 		edit.bindEnabled(elementSelected)
@@ -109,7 +114,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	}
 	
 	def editarMateria() {
-		
 		this.openDialog(new EditorNotaWindows(this))
 	}
 	

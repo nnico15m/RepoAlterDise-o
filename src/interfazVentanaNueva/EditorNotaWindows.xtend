@@ -27,7 +27,6 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 		
 		title = "Editor de Texto"
 
-		
 		var searchFormPanel = new Panel(mainPanel)
 		searchFormPanel.setLayout(new ColumnLayout(2))
 
@@ -50,23 +49,21 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 		
 		var searchFormPanel4 = new Panel(mainPanel)
 		
-		searchFormPanel4.setLayout(new ColumnLayout(2))
+		searchFormPanel4.setLayout(new HorizontalLayout)
+		
+		var checkResumen = new CheckBox(searchFormPanel4)
+		checkResumen.bindValueToProperty("aprobado")
 		
 		var labelAprobado = new Label(searchFormPanel4)
 		labelAprobado.text = "Aprobado"
 		
-		var checkResumen = new CheckBox(searchFormPanel4)
-		checkResumen.bindEnabledToProperty("aprobado")
-		
-		
-		
 		var searchFormPanel3 = new Panel(mainPanel)
 		searchFormPanel3.setLayout(new ColumnLayout(2))
 	
-		new Button(searchFormPanel3)
+/*		new Button(searchFormPanel3)
 			.setCaption("Volver")
 			.onClick[|this.close]	
-	
+*/	
 	
 		new Button(searchFormPanel3) => [
 			caption = "Aceptar"

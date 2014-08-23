@@ -12,25 +12,24 @@ class Alumno  {
 	
 	@Property List<Materia> materias
 	@Property Materia materia
-
 	
 	
 	def search() {
 		
 		materias = new ArrayList<Materia>
 		materias = getHomeMaterias().search()
-		
+		materia = getHomeMaterias().alguno()
 	}
 	
 	def HomeMateria getHomeMaterias() {
 		ApplicationContext.instance.getSingleton(typeof(Materia))
 	}
-	
+/*	
 	def dameTuInformacion() {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-/*	def agregarMateria(Materia materia){
+	def agregarMateria(Materia materia){
 		materias.add(materia)
 	}
 */	

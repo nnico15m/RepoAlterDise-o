@@ -21,9 +21,9 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 	
 	def void init() {
 		
-		this.create("Matematica Discreta")
-		this.create("Algoritmos")
-		this.create("Analisis I")
+		this.create("Matematica Discreta", 2012, false, "Granado Peralta", "Anual 1 - Nivel")
+		this.create("Algoritmos", 2012, true, "Cuello", "Anual 1 - Nivel")
+/*		this.create("Analisis I")
 		this.create("Analisis de Sistemas")
 		this.create("Ingenieria y Sociedad")
 		this.create("Algebra")
@@ -35,19 +35,32 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 		this.create("Arquitectura")
 		this.create("Sintaxis")
 		this.create("Diseño")
-	
+*/
 	
 	}
 	
+	def void create(String nombre, int anio, Boolean aprobo, String profesor, String ubicacion) {
+		var materia = new Materia
+		materia.nombreMateria = nombre
+		materia.anioCursada = anio
+		materia.finalAprobado = aprobo
+		materia.profesor = profesor
+		materia.ubicacionMateria = ubicacion
+		this.create(materia)
+	}
 	
-	def void create(String string) {
+/*	def void create(String string) {
 		var materia = new Materia
 		materia.nombreMateria = string
 		this.create(materia)
 	}
-	
+*/	
 	def search(){
 		allInstances
+	}
+	
+	def alguno(){
+		allInstances.get(0)
 	}
 
 	override protected Predicate<Materia> getCriterio(Materia example) {

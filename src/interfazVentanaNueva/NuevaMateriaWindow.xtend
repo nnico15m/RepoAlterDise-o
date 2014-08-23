@@ -24,9 +24,11 @@ class NuevaMateriaWindow extends Dialog<Materia>{
 			.setCaption("Aceptar")
 			.onClick[|this.accept]
 			
+/*		En el modelo no tenemos botón volver
 		new Button(actionsPanel)
 			.setCaption("Volver")
 			.onClick[|this.close]	
+*/
 	}
 	
 	
@@ -39,6 +41,7 @@ class NuevaMateriaWindow extends Dialog<Materia>{
 	override protected createFormPanel(Panel mainPanel) {
 		
 		this.setTitle("Nueva Materia")
+		taskDescription = "Ingrese la materia"
 		mainPanel.layout = new VerticalLayout
 		new Label(mainPanel).setText("Nombre:")
 		new TextBox(mainPanel).bindValueToProperty("nombreMateria")
