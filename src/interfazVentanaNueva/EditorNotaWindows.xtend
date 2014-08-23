@@ -8,9 +8,12 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.windows.ErrorsPanel
-import dominio.EditorNota
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.CheckBox
+import dominio.EditorNota
 
 class EditorNotaWindows extends MainWindow<EditorNota>  {
 	
@@ -19,10 +22,6 @@ class EditorNotaWindows extends MainWindow<EditorNota>  {
 	}
 	
 	override createContents(Panel mainPanel) {
-		
-		
-
-		
 		
 		title = "Editor de Texto"
 
@@ -74,6 +73,14 @@ class EditorNotaWindows extends MainWindow<EditorNota>  {
 
 
    }
+	
+	def abrirVentana() {
+		this.openWindow(new NuevaMateriaWindow(this))
+	}
+	
+	def openWindow(Dialog<?> ventana) {
+		ventana.open
+	}
 	
 	def static main(String[] args) {
 		new EditorNotaWindows().startApplication

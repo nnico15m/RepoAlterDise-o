@@ -14,7 +14,9 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import dominio.Alumno
+import dominio.HomeMateria
 import dominio.Materia
+
 
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
@@ -28,24 +30,30 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		taskDescription = "Seguidor De Carrera"
 
 		super.createMainTemplate(mainPanel)
-		this.createResultsGrid(mainPanel)
+
+//		this.createResultsGrid(mainPanel)
+
 		
 	}
 	
-	def createResultsGrid(Panel mainPanel) {
+/*	def createResultsGrid(Panel mainPanel) {
 		var table = new Table(mainPanel, typeof(Materia))
 		table.heigth = 200
 		table.width = 450
 		
 		//this.describeResultsGrid(table) Falta poner las materias pero se como se hace
 	}
-	
+*/	
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Buscar")
 			.onClick [ | modelObject.search ] 
 			.setAsDefault
 			.disableOnError
+			
+		new Button(actionsPanel)
+			.setCaption("Nueva Materia")
+			.onClick[|this.crearMateria]
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
@@ -58,8 +66,24 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Label(searchFormPanel1)
 			.setBackground(Color::ORANGE)
 			.bindValueToProperty("materia")
+			
+		new Label(mainPanel).setText("Materias")
+		var tablaMaterias = new Table<Materia>(mainPanel, typeof(Materia))
+		tablaMaterias.bindItemsToProperty("materias")
+		new Column<Materia>(tablaMaterias)
+			.bindContentsToProperty("nombreMateria")
+		}
+	
+	
+	def crearMateria() {
+		this.openDialog(new NuevaMateriaWindow(this))
 	}
 	
+	def openDialog(NuevaMateriaWindow window) {
+		window.onAccept[|modelObject.search]
+		window.open
 	}
+	
+}
 	
 	

@@ -1,4 +1,5 @@
 package dominio
+
 import org.uqbar.commons.utils.Observable
 
 @Observable
@@ -20,5 +21,5 @@ class EditorNota {
 		result.append(if (this.aprobado) " - recibe resumen" else " - no recibe resumen")
 		result.toString
 	}
-	
+
 }
