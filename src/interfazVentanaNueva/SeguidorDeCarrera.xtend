@@ -17,6 +17,13 @@ import dominio.Alumno
 import dominio.HomeMateria
 import dominio.Materia
 import org.uqbar.arena.widgets.CheckBox
+import org.uqbar.arena.widgets.Selector
+import dominio.Nivel
+import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.widgets.CheckBox
+
+
 
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
@@ -79,6 +86,14 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		profesorPanel.layout = new HorizontalLayout
 		new Label(profesorPanel).setText("Profesor de cursada: ")
 		new TextBox(profesorPanel).bindValueToProperty("profesor")
+
+		
+		//PARA EL SELECTOR DE NIVEL
+	//	val selectorNivel = new Selector<Nivel>(materiasPanel)
+		//selectorNivel.allowNull(false)
+		//selectorNivel.bindValueToProperty("ubicacionMateria")
+		
+
 	}
 	
 	def describeResultsGrid(Table<Materia> table) {

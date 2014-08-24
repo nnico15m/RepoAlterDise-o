@@ -7,6 +7,8 @@ import org.uqbar.commons.utils.ApplicationContext
 import interfazVentanaNueva.SeguidorDeCarrera
 import dominio.Materia
 import dominio.HomeMateria
+import dominio.HomeNivel
+import dominio.Nivel
 
 class BuscadorDeMateriasApplicacion extends Application {
 	
@@ -17,7 +19,8 @@ class BuscadorDeMateriasApplicacion extends Application {
 	override protected Window<?> createMainWindow() {
 		
 		ApplicationContext.instance.configureSingleton(typeof(Materia), new HomeMateria)
-		
+		//ESTO VA ???
+		//ApplicationContext.instance.configureSingleton(typeof(Nivel), new HomeNivel)
 		return new SeguidorDeCarrera(this)
 	
 	}
