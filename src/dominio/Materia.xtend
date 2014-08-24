@@ -13,7 +13,7 @@ import java.util.List
 		@Property int anioCursada
 		@Property Boolean finalAprobado
 		@Property String profesor
-		@Property String ubicacionMateria
+		@Property Nivel ubicacionMateria
 		@Property List<EditorNota> notas = new ArrayList(5)
 	
 	}

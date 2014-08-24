@@ -18,9 +18,9 @@ class BuscadorDeMateriasApplicacion extends Application {
 	
 	override protected Window<?> createMainWindow() {
 		
+		ApplicationContext.instance.configureSingleton(typeof(Nivel), new HomeNivel)
 		ApplicationContext.instance.configureSingleton(typeof(Materia), new HomeMateria)
-		//ESTO VA ???
-		//ApplicationContext.instance.configureSingleton(typeof(Nivel), new HomeNivel)
+		//ESTO VA ??? SÍ, LA PUTA MADRE, IBA, PERO ARRIBA!!!!
 		return new SeguidorDeCarrera(this)
 	
 	}

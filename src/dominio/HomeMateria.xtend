@@ -2,14 +2,9 @@ package dominio
 
 
 import org.uqbar.commons.model.CollectionBasedHome
-import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.ApplicationContext
 import org.uqbar.commons.utils.Observable
 import org.apache.commons.collections15.Predicate;
-import java.util.List
-import java.util.ArrayList
-import interfazVentanaNueva.EditorNotaWindows
-import org.uqbar.arena.windows.SimpleWindow
 
 @Observable
 
@@ -39,13 +34,23 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 	
 	}
 	
+	def getNivel(String nivel) {
+		var niveles = ApplicationContext.instance.getSingleton(typeof(Nivel)) as HomeNivel//.get(nivel)
+		niveles.get(nivel)
+	}
+	
+/*	def Nivel get(HomeNivel nivel, String string) {
+		nivel.get(string)
+	}
+*/	
+
 	def void create(String nombre, int anio, Boolean aprobo, String profesor, String ubicacion) {
 		var materia = new Materia
 		materia.nombreMateria = nombre
 		materia.anioCursada = anio
 		materia.finalAprobado = aprobo
 		materia.profesor = profesor
-		materia.ubicacionMateria = ubicacion
+		materia.ubicacionMateria = getNivel(ubicacion)
 		this.create(materia)
 	}
 	

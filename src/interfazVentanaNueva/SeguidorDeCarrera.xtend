@@ -18,12 +18,12 @@ import dominio.HomeMateria
 import dominio.Materia
 import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Selector
-import dominio.Nivel
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.widgets.CheckBox
-
-
+import org.uqbar.commons.utils.ApplicationContext
+import dominio.HomeNivel
+import dominio.Nivel
 
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
@@ -87,13 +87,15 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Label(profesorPanel).setText("Profesor de cursada: ")
 		new TextBox(profesorPanel).bindValueToProperty("profesor")
 
-		
 		//PARA EL SELECTOR DE NIVEL
-	//	val selectorNivel = new Selector<Nivel>(materiasPanel)
-		//selectorNivel.allowNull(false)
-		//selectorNivel.bindValueToProperty("ubicacionMateria")
-		
-
+		var ubicacionPanel = new Panel(descriptorMateriaPanel)
+		ubicacionPanel.layout = new HorizontalLayout
+		new Label(ubicacionPanel).setText("Ubicación Materia ")
+		val selectorNivel = new Selector<Nivel>(ubicacionPanel)
+		selectorNivel.allowNull(false)
+		selectorNivel.bindValueToProperty("ubicacionMateria")
+		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles"))
+	
 	}
 	
 	def describeResultsGrid(Table<Materia> table) {
@@ -111,7 +113,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 			.setCaption("Editar")
 			.onClick [ | this.editarMateria]
 		
-//		var elementSelected = new NotNullObservable("materia")
 		var elementSelected = new NotNullObservable("materia")
 		
 		edit.bindEnabled(elementSelected)
@@ -137,6 +138,9 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		window.open
 	}
 	
+	def getHomeNivel() {
+		ApplicationContext.instance.getSingleton(typeof(Nivel)) as HomeNivel
+	}
 	
 }
 	
