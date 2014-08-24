@@ -24,6 +24,7 @@ import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.commons.utils.ApplicationContext
 import dominio.HomeNivel
 import dominio.Nivel
+import dominio.EditorNota
 
 class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	
@@ -39,7 +40,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 
 		super.createMainTemplate(mainPanel)
 
-		this.createGridActions(mainPanel)
+//		this.createMateriasActions(mainPanel)
 	}
 	
 	
@@ -69,7 +70,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var tablaMaterias = new Table<Materia>(tablaMateriasPanel, typeof(Materia))
 		tablaMaterias.bindItemsToProperty("materias")
 		tablaMaterias.bindValueToProperty("materia")
-		this.describeResultsGrid(tablaMaterias)	
+		this.describeMateriasGrid(tablaMaterias)	
 		
 		var descriptorMateriaPanel = new Panel(materiasPanel, modelObject.materia)
 		
@@ -95,17 +96,37 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		selectorNivel.allowNull(false)
 		selectorNivel.bindValueToProperty("ubicacionMateria")
 		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles"))
+		
+		new Label(descriptorMateriaPanel).setText("Notas de cursada")
+		var tablaNotas = new Table<EditorNota>(descriptorMateriaPanel, typeof(EditorNota))
+		tablaNotas.bindItemsToProperty("notas")
+//		tablaNotas.bindValueToProperty("nota")
+		this.describeNotasGrid(tablaNotas)
 	
 	}
 	
-	def describeResultsGrid(Table<Materia> table) {
+	def describeNotasGrid(Table<EditorNota> table) {
+		new Column<EditorNota>(table)
+			.setTitle("Fecha")
+			.bindContentsToProperty("fecha")
+			
+		new Column<EditorNota>(table)
+			.setTitle("Descripcion")
+			.bindContentsToProperty("descripcion")
+			
+		new Column<EditorNota>(table)
+			.setTitle("Aprobado")
+			.bindContentsToTransformer([nota|if (nota.aprobado) "Si" else "No"])
+	}
+	
+	def describeMateriasGrid(Table<Materia> table) {
 		
 		new Column<Materia>(table).setTitle("Nombre").bindContentsToProperty("nombreMateria")
 		
 	}
 		
 		
-	def createGridActions(Panel mainpanel) {
+	def createMateriasActions(Panel mainpanel) {
 		
 		var actionsPanel = new Panel(mainpanel)
 		actionsPanel.setLayout(new HorizontalLayout)
