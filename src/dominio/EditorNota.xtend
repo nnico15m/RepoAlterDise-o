@@ -15,9 +15,14 @@ class EditorNota {
 		this.descripcion = descripcion
 		this.aprobado = aprobado
 	}
-	def convertir() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	
+	new() {
+		
+	
+		
 	}
+	
+	
 	
 /*	override def String toString() {
 		

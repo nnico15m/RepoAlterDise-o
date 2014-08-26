@@ -14,6 +14,7 @@ class Alumno  {
 	@Property Materia materia
 	
 	
+	
 	def search() {
 		
 		materias = new ArrayList<Materia>

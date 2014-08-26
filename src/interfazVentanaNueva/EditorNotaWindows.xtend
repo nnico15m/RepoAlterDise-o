@@ -15,13 +15,22 @@ import org.uqbar.arena.widgets.CheckBox
 import dominio.EditorNota
 import org.uqbar.arena.windows.WindowOwner
 import dominio.Materia
+import dominio.HomeMateria
+import org.uqbar.commons.utils.ApplicationContext
+import dominio.Alumno
+import org.uqbar.arena.widgets.tables.Table
 
 class EditorNotaWindows extends Dialog<EditorNota>  {
 	
 	
-	new(WindowOwner parent) {
-		super(parent, new EditorNota)
+	
+	new(WindowOwner owner) {
+		super(owner, new EditorNota)
 	}
+	
+	
+	
+	
 	
 	override createContents(Panel mainPanel) {
 		
@@ -67,7 +76,7 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 	
 		new Button(searchFormPanel3) => [
 			caption = "Aceptar"
-			onClick [ | this.modelObject.convertir ]
+			onClick [ | this.accept ]
 
 		]
 
@@ -85,6 +94,9 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
+	def getHomeMateria() {
+		ApplicationContext.instance.getSingleton(typeof(Materia)) as HomeMateria
+	}
 	
 	
 }

@@ -51,9 +51,14 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 			.setCaption("Nueva Materia")
 			.onClick[|this.crearMateria]
 			
-		new Button(actionsPanel)	
+		
+		
+	
+		 new Button(actionsPanel)
 			.setCaption("Editar")
-			.onClick[|this.editarMateria]
+			.onClick [ | this.editarMateria]
+			
+		
 				
 	}
 	
@@ -70,11 +75,14 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var tablaMaterias = new Table<Materia>(tablaMateriasPanel, typeof(Materia))
 		tablaMaterias.bindItemsToProperty("materias")
 		tablaMaterias.bindValueToProperty("materia")
+		
+		var panel2 = new Panel(materiasPanel)
+		
+		new Label(panel2).bindValueToProperty("materia")
+		
 		this.describeMateriasGrid(tablaMaterias)	
 		
 		var descriptorMateriaPanel = new Panel(materiasPanel, modelObject.materia)
-		
-		new Label(descriptorMateriaPanel).bindValueToProperty("nombreMateria")
 		
 		var anioYFinalPanel = new Panel(descriptorMateriaPanel)
 		anioYFinalPanel.layout = new HorizontalLayout
@@ -98,14 +106,20 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles"))
 		
 		new Label(descriptorMateriaPanel).setText("Notas de cursada")
+		
 		var tablaNotas = new Table<EditorNota>(descriptorMateriaPanel, typeof(EditorNota))
 		tablaNotas.bindItemsToProperty("notas")
-//		tablaNotas.bindValueToProperty("nota")
-		this.describeNotasGrid(tablaNotas)
+		tablaNotas.bindValueToProperty("nota")
+		this.describeNotasGrid(tablaNotas,mainPanel)
+		
+		
+		
+		
 	
 	}
 	
-	def describeNotasGrid(Table<EditorNota> table) {
+	def describeNotasGrid(Table<EditorNota> table,Panel actionPanel) {
+		
 		new Column<EditorNota>(table)
 			.setTitle("Fecha")
 			.bindContentsToProperty("fecha")
@@ -117,6 +131,15 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Column<EditorNota>(table)
 			.setTitle("Aprobado")
 			.bindContentsToTransformer([nota|if (nota.aprobado) "Si" else "No"])
+	
+	
+	
+	
+	//	var elementSelected = new NotNullObservable("materia")
+		
+	//	edit.bindEnabled(elementSelected)
+	
+	
 	}
 	
 	def describeMateriasGrid(Table<Materia> table) {
@@ -128,15 +151,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		
 	def createMateriasActions(Panel mainpanel) {
 		
-		var actionsPanel = new Panel(mainpanel)
-		actionsPanel.setLayout(new HorizontalLayout)
-		var edit = new Button(actionsPanel)
-			.setCaption("Editar")
-			.onClick [ | this.editarMateria]
 		
-		var elementSelected = new NotNullObservable("materia")
-		
-		edit.bindEnabled(elementSelected)
 	}	
 	
 		
