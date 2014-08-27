@@ -84,20 +84,21 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		//PUSE TODO EN UN MISMO PANEL, SI QUIEREN VOVLVER COMO ESTABA ANTES,ESTA ABAJO COMENTADO
 		var seleccionPanel = new Panel(mainPanel)
 		seleccionPanel.setLayout(new ColumnLayout(3))
-		new Label(seleccionPanel).setText("Seleccionado: ")
-		new Label(seleccionPanel).setWidth(100).bindValueToProperty("materia.nombreMateria")
-		new NotNullObservable("materia")
-		new Label(seleccionPanel).setText("Año cursada: ")
-		new TextBox(seleccionPanel).bindValueToProperty("materia.anioCursada") //PROBANDO
-		new CheckBox(seleccionPanel).bindValueToProperty("materia.finalAprobado") //
-		new Label(seleccionPanel).setText("Final Aprobado")
-		new Label(seleccionPanel).setText("Profesor de cursada: ")
-		new TextBox(seleccionPanel).bindValueToProperty("materia.profesor")
-		new Label(seleccionPanel).setText("Ubicación Materia ")
+		//new Label(seleccionPanel).setText("Seleccionado: ")
+		//new Label(seleccionPanel).setWidth(100).bindValueToProperty("materia.nombreMateria")
+		//new NotNullObservable("materia")
+		new Label(seleccionPanel).setText("Año cursada:")
+		new TextBox(seleccionPanel).bindValueToProperty("materia.anioCursada")
 		val selectorNivel = new Selector<Nivel>(seleccionPanel)
 		selectorNivel.allowNull(false)
 		selectorNivel.bindValueToProperty("materia.ubicacionMateria")
-		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles"))
+		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles")) 
+		new Label(seleccionPanel).setText("Profesor de cursada:")
+		new TextBox(seleccionPanel).bindValueToProperty("materia.profesor")
+		new Label(seleccionPanel).setText("")
+		new CheckBox(seleccionPanel).bindValueToProperty("materia.finalAprobado") 
+		new Label(seleccionPanel).setText("Final aprobado")
+		
 		
 //		var panel2 = new Panel(materiasPanel)
 		
