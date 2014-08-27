@@ -22,9 +22,11 @@ import org.uqbar.arena.widgets.tables.Table
 
 class EditorNotaWindows extends Dialog<EditorNota>  {
 	
+	@Property EditorNota original
 	
 	new(WindowOwner parent, EditorNota nota) {
 		super(parent, nota)
+		original = nota.clone() as EditorNota
 	}
 
 	override createContents(Panel mainPanel) {
@@ -64,15 +66,17 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 		var searchFormPanel3 = new Panel(mainPanel)
 		searchFormPanel3.setLayout(new ColumnLayout(2))
 	
-/*		new Button(searchFormPanel3)
-			.setCaption("Volver")
-			.onClick[|this.close]	
-*/	
-	
 		new Button(searchFormPanel3) => [
 			caption = "Aceptar"
 			onClick [ | this.accept]//this.modelObject.convertir ]
 		]
+		
+		new Button(searchFormPanel3)
+			.setCaption("Cancelar")
+			.onClick[|
+				modelObject.copiateDe(original)
+				this.close
+			]	
 	}
 	
 	def abrirVentana() {

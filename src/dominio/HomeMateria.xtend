@@ -57,16 +57,10 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 		materia.profesor = profesor
 		materia.ubicacionMateria = getNivel(ubicacion)
 		materia.notas = notas
-		materia.nota = notas.get(0)
+//		materia.nota = notas.get(0)
 		this.create(materia)
 	}
-	
-/*	def void create(String string) {
-		var materia = new Materia
-		materia.nombreMateria = string
-		this.create(materia)
-	}
-*/	
+		
 	def search(){
 		allInstances
 	}

@@ -48,21 +48,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		new Button(actionsPanel)
 			.setCaption("Nueva Materia")
 			.onClick[|this.crearMateria]
-			
-		//Botón de prueba
-		new Button(actionsPanel)
-			.setCaption("Actualizar")
-			.onClick[|this.probarMateria]
 				
-	}
-	
-	def probarMateria() {
-		this.openDialogloco(new Probar(this, modelObject))
-	}
-	
-	def openDialogloco(Probar window) {
-		window.onAccept[|modelObject.search]
-		window.open
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
@@ -80,86 +66,49 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		tablaMaterias.bindValueToProperty("materia")
 		tablaMaterias.setHeigth(200)
 		
-		
-		//PUSE TODO EN UN MISMO PANEL, SI QUIEREN VOVLVER COMO ESTABA ANTES,ESTA ABAJO COMENTADO
-		var seleccionPanel = new Panel(mainPanel)
-		seleccionPanel.setLayout(new ColumnLayout(3))
-		//new Label(seleccionPanel).setText("Seleccionado: ")
-		//new Label(seleccionPanel).setWidth(100).bindValueToProperty("materia.nombreMateria")
-		//new NotNullObservable("materia")
-		new Label(seleccionPanel).setText("Año cursada:")
-		new TextBox(seleccionPanel).bindValueToProperty("materia.anioCursada")
-		val selectorNivel = new Selector<Nivel>(seleccionPanel)
-		selectorNivel.allowNull(false)
-		selectorNivel.bindValueToProperty("materia.ubicacionMateria")
-		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles")) 
-		new Label(seleccionPanel).setText("Profesor de cursada:")
-		new TextBox(seleccionPanel).bindValueToProperty("materia.profesor")
-		new Label(seleccionPanel).setText("")
-		new CheckBox(seleccionPanel).bindValueToProperty("materia.finalAprobado") 
-		new Label(seleccionPanel).setText("Final aprobado")
-		
-		
-//		var panel2 = new Panel(materiasPanel)
-		
-//		new Label(panel2).bindValueToProperty("materia")
-		
+
 		this.describeMateriasGrid(tablaMaterias)	
 		
 		this.crearDescriptorMateriaPanel(materiasPanel)
-		
-	/////		
-		
-	//////
+
 	}
-	
-	
-	
-	
-	
-	
+
 	def crearDescriptorMateriaPanel(Panel materiasPanel){
 		
-		var descriptorMateriaPanel = new Panel(materiasPanel, modelObject.materia)
+		var descriptorMateriaPanel = new Panel(materiasPanel)//, modelObject.materia)
 		
-		/* 		
+		new Label(descriptorMateriaPanel).setHeigth(20).bindValueToProperty("materia.nombreMateria")
+				
 		var anioYFinalPanel = new Panel(descriptorMateriaPanel)
 		anioYFinalPanel.layout = new HorizontalLayout
 		new Label(anioYFinalPanel).setText("Año cursada: ")
-		new TextBox(anioYFinalPanel).bindValueToProperty("anioCursada") //PROBANDO
-		new CheckBox(anioYFinalPanel).bindValueToProperty("finalAprobado") //
+		new TextBox(anioYFinalPanel).bindValueToProperty("materia.anioCursada") //PROBANDO
+		new CheckBox(anioYFinalPanel).bindValueToProperty("materia.finalAprobado") //
 		new Label(anioYFinalPanel).setText("Final Aprobado")
-		*/
-		/* 
+		
 		var profesorPanel = new Panel(descriptorMateriaPanel)
 		profesorPanel.layout = new HorizontalLayout
 		new Label(profesorPanel).setText("Profesor de cursada: ")
-		new TextBox(profesorPanel).bindValueToProperty("profesor")
-
- */
-
-/* 
+		new TextBox(profesorPanel).bindValueToProperty("materia.profesor")
+ 
 		//PARA EL SELECTOR DE NIVEL
 		var ubicacionPanel = new Panel(descriptorMateriaPanel)
 		ubicacionPanel.layout = new HorizontalLayout
 		new Label(ubicacionPanel).setText("Ubicación Materia ")
 		val selectorNivel = new Selector<Nivel>(ubicacionPanel)
 		selectorNivel.allowNull(false)
-		selectorNivel.bindValueToProperty("ubicacionMateria")
+		selectorNivel.bindValueToProperty("materia.ubicacionMateria")
 		selectorNivel.bindItems(new ObservableProperty(homeNivel, "niveles"))
-	*/	
-		new Label(descriptorMateriaPanel).setText("Notas de cursada")
+		
+		new Label(descriptorMateriaPanel).setText("Notas de cursada").setHeigth(20)
 		
 		var tablaNotas = new Table<EditorNota>(descriptorMateriaPanel, typeof(EditorNota))
-		tablaNotas.bindItemsToProperty("notas")
-		tablaNotas.bindValueToProperty("nota")
+		tablaNotas.setHeigth(60)
+		tablaNotas.bindItemsToProperty("materia.notas")
+		tablaNotas.bindValueToProperty("materia.nota")
 		this.describeNotasGrid(tablaNotas, descriptorMateriaPanel)
 		
 		this.createNotasActions(descriptorMateriaPanel)
-		
-//		while (true){
-//			materiasPanel.bindContentsToProperty("materia")
-//		}
 		
 	} 
 	
@@ -199,25 +148,24 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	def createNotasActions(Panel mainpanel) {
 		
 		var actionsPanel = new Panel(mainpanel)
-		actionsPanel.setLayout(new HorizontalLayout)
+		actionsPanel.setLayout(new ColumnLayout(3))
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick [ | this.editarNota]
-			.setWidth(60)
+			.setWidth(70)
 
-		var elementSelected = new NotNullObservable("notas")
-		
-		edit.bindEnabled(elementSelected)
+//		var elementSelected = new NotNullObservable("notas")		
+//		edit.bindEnabled(elementSelected)
 		
 		new Button(actionsPanel)
 			.setCaption("+")
 			.onClick[| this.crearNota]
-			.setWidth(60)
+			.setWidth(70)
 			
 		new Button(actionsPanel)
 			.setCaption("-")
 			.onClick[| this.BorrarNota]
-			.setWidth(60)
+			.setWidth(70)
 
 	}
 	
