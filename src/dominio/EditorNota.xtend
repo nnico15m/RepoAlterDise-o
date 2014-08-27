@@ -16,14 +16,17 @@ class EditorNota {
 		this.aprobado = aprobado
 	}
 	
-	new() {
-		
+	new(){}
 	
-		
+	def convertir() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	
-	
+
+//	def search(){
+		
+//	}
+
 /*	override def String toString() {
 		
 		var result = new StringBuffer

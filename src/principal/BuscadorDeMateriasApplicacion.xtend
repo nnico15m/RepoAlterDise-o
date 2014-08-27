@@ -20,7 +20,7 @@ class BuscadorDeMateriasApplicacion extends Application {
 		
 		ApplicationContext.instance.configureSingleton(typeof(Nivel), new HomeNivel)
 		ApplicationContext.instance.configureSingleton(typeof(Materia), new HomeMateria)
-		//ESTO VA ??? SÍ, LA PUTA MADRE, IBA, PERO ARRIBA!!!!
+
 		return new SeguidorDeCarrera(this)
 	
 	}

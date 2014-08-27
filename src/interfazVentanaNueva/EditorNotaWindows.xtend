@@ -23,15 +23,10 @@ import org.uqbar.arena.widgets.tables.Table
 class EditorNotaWindows extends Dialog<EditorNota>  {
 	
 	
-	
-	new(WindowOwner owner) {
-		super(owner, new EditorNota)
+	new(WindowOwner parent) {
+		super(parent, new EditorNota())
 	}
-	
-	
-	
-	
-	
+
 	override createContents(Panel mainPanel) {
 		
 		title = "Editor de Texto"
@@ -76,11 +71,9 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 	
 		new Button(searchFormPanel3) => [
 			caption = "Aceptar"
-			onClick [ | this.accept ]
-
+			onClick [ | this.accept]//this.modelObject.convertir ]
 		]
-
-   }
+	}
 	
 	def abrirVentana() {
 		this.openWindow(new NuevaMateriaWindow(this))
@@ -89,7 +82,7 @@ class EditorNotaWindows extends Dialog<EditorNota>  {
 	def openWindow(Dialog<?> ventana) {
 		ventana.open
 	}
-	
+	// tirar un error aca?
 	override protected createFormPanel(Panel mainPanel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}

@@ -42,8 +42,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 
 //		this.createMateriasActions(mainPanel)
 	}
-	
-	
 
 	override protected addActions(Panel actionsPanel) {
 			
@@ -51,15 +49,20 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 			.setCaption("Nueva Materia")
 			.onClick[|this.crearMateria]
 			
-		
-		
-	
-		 new Button(actionsPanel)
-			.setCaption("Editar")
-			.onClick [ | this.editarMateria]
-			
-		
+		//Botón de prueba
+		new Button(actionsPanel)
+			.setCaption("Actualizar")
+			.onClick[|this.probarMateria]
 				
+	}
+	
+	def probarMateria() {
+		this.openDialogloco(new Probar(this, modelObject))
+	}
+	
+	def openDialogloco(Probar window) {
+		window.onAccept[|modelObject.search]
+		window.open
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
@@ -75,12 +78,23 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var tablaMaterias = new Table<Materia>(tablaMateriasPanel, typeof(Materia))
 		tablaMaterias.bindItemsToProperty("materias")
 		tablaMaterias.bindValueToProperty("materia")
+		tablaMaterias.setHeigth(200)
 		
-		var panel2 = new Panel(materiasPanel)
+//		var panel2 = new Panel(materiasPanel)
 		
-		new Label(panel2).bindValueToProperty("materia")
+//		new Label(panel2).bindValueToProperty("materia")
 		
 		this.describeMateriasGrid(tablaMaterias)	
+		
+		this.crearDescriptorMateriaPanel(materiasPanel)
+		
+		new Button(materiasPanel)	
+			.setCaption("Actualizar")
+			.onClick[|this.crearDescriptorMateriaPanel(new Panel(mainPanel))]
+	
+	}
+	
+	def crearDescriptorMateriaPanel(Panel materiasPanel){
 		
 		var descriptorMateriaPanel = new Panel(materiasPanel, modelObject.materia)
 		
@@ -110,12 +124,18 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var tablaNotas = new Table<EditorNota>(descriptorMateriaPanel, typeof(EditorNota))
 		tablaNotas.bindItemsToProperty("notas")
 		tablaNotas.bindValueToProperty("nota")
-		this.describeNotasGrid(tablaNotas,mainPanel)
+		this.describeNotasGrid(tablaNotas, descriptorMateriaPanel)
 		
 		
 		
 		
-	
+		
+		this.createNotasActions(descriptorMateriaPanel)
+		
+//		while (true){
+//			materiasPanel.bindContentsToProperty("materia")
+//		}
+		
 	}
 	
 	def describeNotasGrid(Table<EditorNota> table,Panel actionPanel) {
@@ -132,9 +152,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 			.setTitle("Aprobado")
 			.bindContentsToTransformer([nota|if (nota.aprobado) "Si" else "No"])
 	
-	
-	
-	
 	//	var elementSelected = new NotNullObservable("materia")
 		
 	//	edit.bindEnabled(elementSelected)
@@ -149,9 +166,18 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	}
 		
 		
-	def createMateriasActions(Panel mainpanel) {
+	def createNotasActions(Panel mainpanel) {
 		
+		var actionsPanel = new Panel(mainpanel)
+		actionsPanel.setLayout(new HorizontalLayout)
+		var edit = new Button(actionsPanel)
+			.setCaption("Editar")
+			.onClick [ | this.editarNota]
+
+		var elementSelected = new NotNullObservable("notas")
 		
+		edit.bindEnabled(elementSelected)
+
 	}	
 	
 		
@@ -165,7 +191,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		window.open
 	}
 	
-	def editarMateria() {
+	def editarNota() {
 		this.openDialog(new EditorNotaWindows(this))
 	}
 	
