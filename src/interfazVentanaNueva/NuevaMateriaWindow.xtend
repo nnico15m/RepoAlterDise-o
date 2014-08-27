@@ -31,8 +31,6 @@ class NuevaMateriaWindow extends Dialog<Materia>{
 */
 	}
 	
-	
-	
 	override executeTask(){
 		homeMateria.create(modelObject)
 		super.executeTask()

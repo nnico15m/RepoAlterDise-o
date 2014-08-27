@@ -15,19 +15,25 @@ import java.util.List
 		@Property Boolean finalAprobado
 		@Property String profesor
 		@Property Nivel ubicacionMateria
-		@Property List<EditorNota> notas 
+		@Property List<EditorNota> notas = new ArrayList<EditorNota>
 		@Property EditorNota nota
 	
 	def search(){
 		
 		notas = new ArrayList<EditorNota>
-		
-		
-		
+	
 	}
 	
 	override clone() {
 		super.clone()
+	}
+	
+	def agregaNota(EditorNota nota) {
+		notas.add(nota)
+	}
+	
+	def borraTuNota() {
+		notas.remove(nota)
 	}
 	
 	}

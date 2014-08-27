@@ -57,6 +57,7 @@ class HomeMateria extends CollectionBasedHome<Materia>{
 		materia.profesor = profesor
 		materia.ubicacionMateria = getNivel(ubicacion)
 		materia.notas = notas
+		materia.nota = notas.get(0)
 		this.create(materia)
 	}
 	

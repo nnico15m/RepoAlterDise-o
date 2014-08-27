@@ -25,6 +25,10 @@ class Alumno  {
 	def HomeMateria getHomeMaterias() {
 		ApplicationContext.instance.getSingleton(typeof(Materia))
 	}
+	
+	def borraTuNota(){
+		materia.borraTuNota()
+	}
 /*	
 	def dameTuInformacion() {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")

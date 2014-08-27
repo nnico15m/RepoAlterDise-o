@@ -108,9 +108,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		
 		this.crearDescriptorMateriaPanel(materiasPanel)
 		
-		new Button(materiasPanel)	
-			.setCaption("Actualizar")
-			.onClick[|this.crearDescriptorMateriaPanel(new Panel(mainPanel))]
 	/////		
 		
 	//////
@@ -157,10 +154,6 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		tablaNotas.bindItemsToProperty("notas")
 		tablaNotas.bindValueToProperty("nota")
 		this.describeNotasGrid(tablaNotas, descriptorMateriaPanel)
-		
-		
-		
-		
 		
 		this.createNotasActions(descriptorMateriaPanel)
 		
@@ -210,13 +203,36 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick [ | this.editarNota]
+			.setWidth(60)
 
 		var elementSelected = new NotNullObservable("notas")
 		
 		edit.bindEnabled(elementSelected)
+		
+		new Button(actionsPanel)
+			.setCaption("+")
+			.onClick[| this.crearNota]
+			.setWidth(60)
+			
+		new Button(actionsPanel)
+			.setCaption("-")
+			.onClick[| this.BorrarNota]
+			.setWidth(60)
 
-	}	
+	}
 	
+	def BorrarNota() {
+		modelObject.borraTuNota()
+	}
+	
+	def crearNota() {
+		this.openCreadorNota(new NuevaNotaWindow(this, modelObject.materia))
+	}
+	
+	def openCreadorNota(NuevaNotaWindow window){
+		window.onAccept[|modelObject.search]
+		window.open
+	}
 		
 	def crearMateria() {
 		this.openDialog(new NuevaMateriaWindow(this))
@@ -229,7 +245,7 @@ class SeguidorDeCarrera extends SimpleWindow<Alumno>  {
 	}
 	
 	def editarNota() {
-		this.openDialog(new EditorNotaWindows(this))
+		this.openDialog(new EditorNotaWindows(this, modelObject.materia.nota))
 	}
 	
 	def openDialog(EditorNotaWindows window) {

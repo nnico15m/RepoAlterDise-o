@@ -23,8 +23,8 @@ import org.uqbar.arena.widgets.tables.Table
 class EditorNotaWindows extends Dialog<EditorNota>  {
 	
 	
-	new(WindowOwner parent) {
-		super(parent, new EditorNota())
+	new(WindowOwner parent, EditorNota nota) {
+		super(parent, nota)
 	}
 
 	override createContents(Panel mainPanel) {
